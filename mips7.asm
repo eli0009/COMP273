@@ -1,18 +1,27 @@
+
 .text
 
 main: 
-li $t0, 3
-li $t1, 6
-jal sum
-
-
 li $v0, 1
-move $a0, $s0
-syscall
+li $s1, 7
+li $s2, 9
 
-li $v0, 10   		# System call code 10 (exit).
-syscall
+# store value into stack
+addi $sp, $sp, -4
+sw $s1, 0($sp)
 
-sum:
-add $s0, $t0, $t1
-jr $ra
+addi $sp, $sp, -4
+sw $s2, 0($sp)
+
+# pop value from stack
+lw $t1, 0($sp)
+addi $sp, $sp, 4
+
+lw $t2, 0($sp)
+addi $sp, $sp, 4
+
+# print values
+move $a0, $t1
+syscall
+move $a0, $t2
+syscall
