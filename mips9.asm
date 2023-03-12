@@ -11,3 +11,4 @@ Gteq:
 li $v0, 1
 li $a0, 9
 syscall
+mo
